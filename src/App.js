@@ -1,7 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
+import {useEffect} from "react"
 
 function App() {
+
+
+  useEffect(() => {
+    //check API to validate session
+    fetch("/books")
+
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      console.log(data)
+    })
+  })
+ 
   return (
     <div className="App">
       <header className="App-header">
