@@ -1,21 +1,35 @@
 import logo from './logo.svg';
 import './App.css';
-import {useEffect} from "react"
+import {useEffect, useState} from "react"
+import axios from "axios"
 
 function App() {
+  const [books, setBooks] = useState([])
 
+
+ // useEffect(() => {
+    //check API to validate session
+  //   fetch("/books")
+
+  //   .then(function(response) {
+  //     return response.json();
+  //   })
+  //   .then(function(data) {
+  //     console.log('data', data)
+  //     setBooks(data)
+  //   })
+  // },[])
 
   useEffect(() => {
-    //check API to validate session
-    fetch("/books")
-
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {
-      console.log(data)
-    })
+    
+  axios
+  .get("/books")
+  .then((response) => {
+          console.log(response)
+          setBooks(response.data)
   })
+  
+},[])
  
   return (
     <div className="App">
@@ -24,14 +38,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {JSON.stringify(books)}
       </header>
     </div>
   );
